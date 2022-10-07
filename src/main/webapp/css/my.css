@@ -1,0 +1,16 @@
+.header a, a:hover {
+    color: #0a89f7;
+    text-decoration: none;
+}
+
+.header h1 {
+    letter-spacing: 15px;
+    font-size: 300%;
+    color: #2aabd2;
+}
+
+.header p {
+    color: white !important;
+    font-size: 90%;
+    letter-spacing: 3px;
+}
