@@ -4,13 +4,22 @@
 }
 
 .header h1 {
-    letter-spacing: 15px;
+    letter-spacing: 5px;
     font-size: 300%;
-    color: #2aabd2;
+    text-align: center;
 }
 
 .header p {
     color: white !important;
     font-size: 90%;
     letter-spacing: 3px;
+}
+
+.navbar-inverse {
+    padding: 1%;
+    border-radius: 0px;
+}
+
+html, body {
+    height: 100%;
 }
