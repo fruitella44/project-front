@@ -1,11 +1,71 @@
-<html>
+<html lang="ru">
 <head>
     <title>RPG</title>
     <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
     <link href="/css/my.css" rel="stylesheet">
 </head>
-<body>
+<body onload="showList()">
 <h1>RPG admin panel</h1>
 
+<label for="count_1">Counter per pages</label>
+<select id="count_1" onchange="showList()">
+    <option value = "3">3</option>
+    <option value = "3">5</option>
+    <option value = "3">10</option>
+    <option value = "3">20</option>
+</select>
+
+<table id="table_1">
+    <tr>
+        <th class="center">#</th>
+        <th class="center">Name</th>
+        <th class="center">Title</th>
+        <th class="center">Race</th>
+        <th class="center">Profession</th>
+        <th class="center">Level</th>
+        <th class="center">Birthday</th>
+        <th class="center">Banned</th>
+    </tr>
+</table>
+
+<div id="pagingButton">Pages:</div>
+
+<script>
+    function showList() {
+        let url = "/rest/players";
+
+        $.get(url, function (response) {
+            $.each(response, function (i, item) {
+                $('<tr>').html(
+                    + item.id + "</td>"
+                    + item.name + "</td>"
+                    + item.title + "</td>"
+                    + item.race + "</td>"
+                    + item.profession + "</td>"
+                    + item.level + "</td>"
+                    + new Date(item.birthday).toLocaleDateString() + "</td>"
+                    + item.banned + "</td>"
+                ).appendTo("#table_1");
+
+            });
+        });
+
+        let totalCount = getTotalCount();
+    }
+
+    function getTotalCount() {
+        let url = "/rest/players/count";
+        let res = 0;
+        $.ajax({
+            url: url,
+            success: function (result) {
+                res = parseInt(result);
+            }
+        })
+
+        console.log(res);
+        return res;
+    }
+</script>
 </body>
 </html>
